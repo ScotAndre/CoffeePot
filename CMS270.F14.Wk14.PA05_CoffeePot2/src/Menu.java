@@ -1,5 +1,5 @@
 /*
- *  Beverage.java
+ *  Menu.java
  *  
  *  Scot Andre      sandre@rollins.edu
  *  Juan Recinos    jrecinos@rollins.edu

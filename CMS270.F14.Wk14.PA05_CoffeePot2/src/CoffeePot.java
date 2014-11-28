@@ -1,5 +1,5 @@
 /*
- *  Beverage.java
+ *  CoffeePot.java
  *  
  *  Scot Andre      sandre@rollins.edu
  *  Juan Recinos    jrecinos@rollins.edu
