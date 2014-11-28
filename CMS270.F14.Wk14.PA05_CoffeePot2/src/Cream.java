@@ -1,5 +1,5 @@
 /*
- *  Coffee.java
+ *  Cream.java
  *  
  *  Scot Andre      sandre@rollins.edu
  *  Juan Recinos    jrecinos@rollins.edu
@@ -12,11 +12,10 @@
  *  Fall 2014
  *
  */
-public class Coffee extends Beverage {
-	private String name = "Coffee";
-	private String description = "Black Coffee";
+public class Cream extends Condiment {
+	private String name = "Cream";
+	private String description = "Non-Dairy Creamer";
 	private int inventory = 100;
-	private final int PRICE = 35;
 
 	@Override
 	public String getName() {
@@ -31,10 +30,4 @@ public class Coffee extends Beverage {
 	public int getInventory() {
 		return inventory;
 	}
-
-	@Override
-	public int getPrice() {
-		return PRICE;
-	}
-
 }

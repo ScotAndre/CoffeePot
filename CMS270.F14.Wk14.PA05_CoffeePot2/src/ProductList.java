@@ -20,6 +20,10 @@ public class ProductList {
 		Beverage tea = new Tea();
 		Beverage soup = new Soup();
 
+		Condiment cream = new Cream();
+		Condiment sugar = new Sugar();
+		Condiment lemon = new Lemon();
+
 		BeverageComponent coffeeMenu = new Menu("COFFEE MENU", "Coffee");
 		BeverageComponent teaMenu = new Menu("TEA MENU", "Tea");
 		BeverageComponent soupMenu = new Menu("SOUP MENU", "Soup");
@@ -43,13 +47,12 @@ public class ProductList {
 		teaMenu.add(tea);
 		teaMenu.add(teaCondiments);
 
-		coffeeCondiments
-				.add(new Beverage("Cream", "Non-Dairy Creamer", 100, 0));
-		coffeeCondiments.add(new Beverage("Sugar", "Sugar", 3, 0));
+		coffeeCondiments.add(cream);
+		coffeeCondiments.add(sugar);
 
-		teaCondiments.add(new Beverage("Cream", "Non-Dairy Creamer", 100, 0));
-		teaCondiments.add(new Beverage("Sugar", "Sugar", 3, 0));
-		teaCondiments.add(new Beverage("Lemon", "Lemon Juice", 100, 0));
+		teaCondiments.add(cream);
+		teaCondiments.add(sugar);
+		teaCondiments.add(lemon);
 
 		soupMenu.add(soup);
 
