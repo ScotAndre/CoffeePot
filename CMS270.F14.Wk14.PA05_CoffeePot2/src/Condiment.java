@@ -1,4 +1,3 @@
-
 /*
  *  Condiment.java
  *  
@@ -15,18 +14,12 @@
  */
 
 public class Condiment extends BeverageComponent {
-	String name;
-	String description;
-	int inventory;
+	private String name;
+	private String description;
+	private int inventory;
 
 	public Condiment() {
 
-	}
-
-	public Condiment(String name, String description, int inventory) {
-		this.name = name;
-		this.description = description;
-		this.inventory = inventory;
 	}
 
 	@Override

@@ -15,20 +15,13 @@ import java.text.DecimalFormat;
  *
  */
 public class Beverage extends BeverageComponent {
-	String name;
-	String description;
-	int inventory;
-	int price;
+	private String name;
+	private String description;
+	private int inventory;
+	private int price;
 
 	public Beverage() {
 
-	}
-
-	public Beverage(String name, String description, int inventory, int price) {
-		this.name = name;
-		this.description = description;
-		this.inventory = inventory;
-		this.price = price;
 	}
 
 	@Override
