@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /*
  *  Beverage.java
  *  
@@ -17,6 +19,10 @@ public class Beverage extends BeverageComponent {
 	String description;
 	int inventory;
 	int price;
+
+	public Beverage() {
+
+	}
 
 	public Beverage(String name, String description, int inventory, int price) {
 		this.name = name;
@@ -42,8 +48,10 @@ public class Beverage extends BeverageComponent {
 
 	@Override
 	public void print() {
+		DecimalFormat df = new DecimalFormat("##0.00");
+		double bevPrice = getPrice() / 100.0;
 		System.out.print("  " + getName());
-		System.out.println(", " + getPrice());
+		System.out.println(", $ " + df.format(bevPrice));
 		System.out.println("    -- " + getDescription());
 	}
 }

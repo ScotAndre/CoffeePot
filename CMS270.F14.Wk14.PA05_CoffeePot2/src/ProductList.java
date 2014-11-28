@@ -15,6 +15,11 @@
 public class ProductList {
 
 	public ProductList() {
+		Beverage coffee = new Coffee();
+		Beverage decaf = new Decaf();
+		Beverage tea = new Tea();
+		Beverage soup = new Soup();
+
 		BeverageComponent coffeeMenu = new Menu("COFFEE MENU", "Coffee");
 		BeverageComponent teaMenu = new Menu("TEA MENU", "Tea");
 		BeverageComponent soupMenu = new Menu("SOUP MENU", "Soup");
@@ -31,11 +36,11 @@ public class ProductList {
 		allMenus.add(teaMenu);
 		allMenus.add(soupMenu);
 
-		coffeeMenu.add(new Beverage("Coffee", "Dark Roast", 100, 35));
-		coffeeMenu.add(new Beverage("Decaf", "Decaf Coffee", 100, 35));
+		coffeeMenu.add(coffee);
+		coffeeMenu.add(decaf);
 		coffeeMenu.add(coffeeCondiments);
 
-		teaMenu.add(new Beverage("Tea", "Hot Black Tea", 100, 60));
+		teaMenu.add(tea);
 		teaMenu.add(teaCondiments);
 
 		coffeeCondiments
@@ -46,7 +51,7 @@ public class ProductList {
 		teaCondiments.add(new Beverage("Sugar", "Sugar", 3, 0));
 		teaCondiments.add(new Beverage("Lemon", "Lemon Juice", 100, 0));
 
-		soupMenu.add(new Beverage("Soup", "Chicken Noodle Soup", 100, 75));
+		soupMenu.add(soup);
 
 		CoffeePot waitress = new CoffeePot(allMenus);
 
