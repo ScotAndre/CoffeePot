@@ -30,4 +30,9 @@ public class Cream extends Condiment {
 	public int getInventory() {
 		return inventory;
 	}
+
+	@Override
+	public void dispense() {
+		inventory--;
+	}
 }

@@ -17,6 +17,7 @@ public class Tea extends Beverage {
 	private String description = "Black Tea";
 	private int inventory = 100;
 	private final int PRICE = 60;
+	private String[] condiments = { "Cream", "Lemon", "Sugar" };
 
 	@Override
 	public String getName() {
@@ -37,4 +38,18 @@ public class Tea extends Beverage {
 		return PRICE;
 	}
 
+	@Override
+	public void dispense() {
+		inventory--;
+	}
+
+	@Override
+	public boolean isAcceptableCondiment(String condiment) {
+		for (int i = 0; i < condiments.length; i++) {
+			if (condiments[i].equals(condiment)) {
+				return true;
+			}
+		}
+		return false;
+	}// end isAcceptable()
 }

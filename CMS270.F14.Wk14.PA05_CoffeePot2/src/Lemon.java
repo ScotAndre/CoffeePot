@@ -31,4 +31,8 @@ public class Lemon extends Condiment {
 		return inventory;
 	}
 
+	@Override
+	public void dispense() {
+		inventory--;
+	}
 }

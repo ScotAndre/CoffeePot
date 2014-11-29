@@ -40,6 +40,11 @@ public class Beverage extends BeverageComponent {
 	}
 
 	@Override
+	public void dispense() {
+
+	}
+
+	@Override
 	public void print() {
 		DecimalFormat df = new DecimalFormat("##0.00");
 		double bevPrice = getPrice() / 100.0;
@@ -47,4 +52,8 @@ public class Beverage extends BeverageComponent {
 		System.out.println(", $ " + df.format(bevPrice));
 		System.out.println("    -- " + getDescription());
 	}
+
+	public boolean isAcceptableCondiment(String condiment) {
+		return false;
+	}// end isAcceptable()
 }

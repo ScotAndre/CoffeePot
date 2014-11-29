@@ -17,6 +17,7 @@ public class Soup extends Beverage {
 	private String description = "Chicken Noodle";
 	private int inventory = 100;
 	private final int PRICE = 75;
+	private String[] condiments = {};
 
 	@Override
 	public String getName() {
@@ -37,4 +38,18 @@ public class Soup extends Beverage {
 		return PRICE;
 	}
 
+	@Override
+	public void dispense() {
+		inventory--;
+	}
+
+	@Override
+	public boolean isAcceptableCondiment(String condiment) {
+		for (int i = 0; i < condiments.length; i++) {
+			if (condiments[i].equals(condiment)) {
+				return true;
+			}
+		}
+		return false;
+	}// end isAcceptable()
 }

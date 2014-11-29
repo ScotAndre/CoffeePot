@@ -41,6 +41,14 @@ public abstract class BeverageComponent {
 		throw new UnsupportedOperationException();
 	}
 
+	public boolean isAcceptableCondiment(BeverageComponent menuComponent) {
+		throw new UnsupportedOperationException();
+	}
+
+	public void dispense() {
+		throw new UnsupportedOperationException();
+	}
+
 	public void print() {
 		throw new UnsupportedOperationException();
 	}

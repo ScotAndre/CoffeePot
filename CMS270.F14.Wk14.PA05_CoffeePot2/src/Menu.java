@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Menu extends BeverageComponent {
-	ArrayList<BeverageComponent> menuComponents = new ArrayList<BeverageComponent>();
-	String name;
-	String description;
+	private ArrayList<BeverageComponent> menuComponents = new ArrayList<BeverageComponent>();
+	private String name;
+	private String description;
 
 	public Menu(String name, String description) {
 		this.name = name;

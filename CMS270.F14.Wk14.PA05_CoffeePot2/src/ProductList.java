@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  *  ProductList.java
  *  
@@ -13,16 +15,20 @@
  *
  */
 public class ProductList {
+	// All Condiments
+	private Condiment cream = new Cream();
+	private Condiment sugar = new Sugar();
+	private Condiment lemon = new Lemon();
+	private ArrayList<Condiment> allCondiments = new ArrayList<Condiment>();
 
 	public ProductList() {
+		// All Products
 		Beverage coffee = new Coffee();
 		Beverage decaf = new Decaf();
 		Beverage tea = new Tea();
 		Beverage soup = new Soup();
 
-		Condiment cream = new Cream();
-		Condiment sugar = new Sugar();
-		Condiment lemon = new Lemon();
+		allCondiments();
 
 		BeverageComponent coffeeMenu = new Menu("COFFEE MENU", "Coffee");
 		BeverageComponent teaMenu = new Menu("TEA MENU", "Tea");
@@ -47,17 +53,30 @@ public class ProductList {
 		teaMenu.add(tea);
 		teaMenu.add(teaCondiments);
 
-		coffeeCondiments.add(cream);
-		coffeeCondiments.add(sugar);
+		// acceptable condiments for coffee
+		for (int i = 0; i < allCondiments.size(); i++) {
+			if (coffee.isAcceptableCondiment(allCondiments.get(i).getName())) {
+				coffeeCondiments.add(allCondiments.get(i));
+			}
+		}
 
-		teaCondiments.add(cream);
-		teaCondiments.add(sugar);
-		teaCondiments.add(lemon);
+		// acceptable condiments for tea
+		for (int i = 0; i < allCondiments.size(); i++) {
+			if (tea.isAcceptableCondiment(allCondiments.get(i).getName())) {
+				teaCondiments.add(allCondiments.get(i));
+			}
+		}
 
 		soupMenu.add(soup);
 
-		CoffeePot waitress = new CoffeePot(allMenus);
+		CoffeePot thePot = new CoffeePot(allMenus);
 
-		waitress.printMenu();
+		thePot.printMenu();
+	}
+
+	private void allCondiments() {
+		allCondiments.add(cream);
+		allCondiments.add(lemon);
+		allCondiments.add(sugar);
 	}
 }

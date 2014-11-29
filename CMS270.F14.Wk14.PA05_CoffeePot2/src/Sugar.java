@@ -31,4 +31,8 @@ public class Sugar extends Condiment {
 		return inventory;
 	}
 
+	@Override
+	public void dispense() {
+		inventory--;
+	}
 }
