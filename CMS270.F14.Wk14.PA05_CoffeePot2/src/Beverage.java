@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 /*
  *  Beverage.java
@@ -6,10 +7,6 @@
  *  Juan Recinos    jrecinos@rollins.edu
  *  Katie Shiver    kshiver@rollins.edu
  *  Patrick Skelly  pskelly@rollins.edu
- *  
- *  
- *  
- *  
  *  
  *  Coffee Pot Project
  *  Dr. Carrington
@@ -28,30 +25,25 @@ public class Beverage extends BeverageComponent {
 	}
 
 	@Override
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	@Override
 	public String getDescription() {
 		return description;
 	}
 
 	@Override
-	@Override
 	public int getPrice() {
 		return price;
 	}
 
 	@Override
-	@Override
 	public void dispense() {
 
 	}
 
-	@Override
 	@Override
 	public void print() {
 		DecimalFormat df = new DecimalFormat("##0.00");

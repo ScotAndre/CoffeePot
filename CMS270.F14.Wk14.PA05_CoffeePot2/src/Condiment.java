@@ -33,6 +33,11 @@ public class Condiment extends BeverageComponent {
 	}
 
 	@Override
+	public int getInventory() {
+		return inventory;
+	}
+
+	@Override
 	public void print() {
 		System.out.println("  " + getName());
 		System.out.println("    -- " + getDescription());

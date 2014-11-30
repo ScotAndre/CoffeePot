@@ -18,6 +18,7 @@ public class CoffeePotMain {
 
 	public static void main(String[] args) {
 		ProductList pl = new ProductList();
+		// Order order = new Order();
 
 		// run GUI
 		EventQueue.invokeLater(new Runnable() {
