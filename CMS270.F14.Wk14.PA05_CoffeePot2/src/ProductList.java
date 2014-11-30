@@ -16,26 +16,29 @@ import java.util.ArrayList;
  */
 public class ProductList {
 	// All Condiments
+	private ArrayList<Condiment> allCondiments = new ArrayList<Condiment>();
 	private Condiment cream = new Cream();
 	private Condiment sugar = new Sugar();
 	private Condiment lemon = new Lemon();
-	private ArrayList<Condiment> allCondiments = new ArrayList<Condiment>();
+
+	// All Products
+	private ArrayList<Beverage> allBeverages = new ArrayList<Beverage>();
+	private Beverage coffee = new Coffee();
+	private Beverage decaf = new Decaf();
+	private Beverage tea = new Tea();
+	private Beverage soup = new Soup();
+
+	private BeverageComponent coffeeCondiments = new Menu("COFFEE CONDIMENTS",
+			"Enhance Your Coffee!");
 
 	public ProductList() {
-		// All Products
-		Beverage coffee = new Coffee();
-		Beverage decaf = new Decaf();
-		Beverage tea = new Tea();
-		Beverage soup = new Soup();
-
 		allCondiments();
+		allBeverages();
 
 		BeverageComponent coffeeMenu = new Menu("COFFEE MENU", "Coffee");
 		BeverageComponent teaMenu = new Menu("TEA MENU", "Tea");
 		BeverageComponent soupMenu = new Menu("SOUP MENU", "Soup");
 
-		BeverageComponent coffeeCondiments = new Menu("COFFEE CONDIMENTS",
-				"Don't like it black!");
 		BeverageComponent teaCondiments = new Menu("TEA Condiments",
 				"Tea Condiments");
 
@@ -78,5 +81,24 @@ public class ProductList {
 		allCondiments.add(cream);
 		allCondiments.add(lemon);
 		allCondiments.add(sugar);
+	}
+
+	private void allBeverages() {
+		allBeverages.add(coffee);
+		allBeverages.add(decaf);
+		allBeverages.add(tea);
+		allBeverages.add(soup);
+	}
+
+	public ArrayList getAllCondiments() {
+		return allCondiments;
+	}
+
+	public ArrayList getAllBeverages() {
+		return allBeverages;
+	}
+
+	public BeverageComponent getCoffeeCondiments() {
+		return coffeeCondiments;
 	}
 }

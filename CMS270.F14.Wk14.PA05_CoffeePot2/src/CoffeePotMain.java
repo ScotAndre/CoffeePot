@@ -1,3 +1,5 @@
+import java.awt.EventQueue;
+
 /*
  *  CoffeePotMain.java
  *  
@@ -16,6 +18,20 @@ public class CoffeePotMain {
 
 	public static void main(String[] args) {
 		ProductList pl = new ProductList();
-	}
 
+		// run GUI
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					CoffeePotGui frame = new CoffeePotGui();
+					frame.setTitle("Coffee Machine");
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+	}
 }
