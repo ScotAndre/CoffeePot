@@ -37,7 +37,7 @@ public abstract class BeverageComponent {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean hasEnough() {
+	public int getInventory() {
 		throw new UnsupportedOperationException();
 	}
 

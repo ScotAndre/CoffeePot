@@ -15,7 +15,7 @@
 public class Sugar extends Condiment {
 	private String name = "Sugar";
 	private String description = "All-Natural Sugar";
-	private int inventory = 100;
+	private int inventory = 3;
 
 	@Override
 	public String getName() {
@@ -27,6 +27,7 @@ public class Sugar extends Condiment {
 		return description;
 	}
 
+	@Override
 	public int getInventory() {
 		return inventory;
 	}
