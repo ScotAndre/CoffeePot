@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 public class CoffeePotGui extends JFrame {
@@ -23,6 +22,7 @@ public class CoffeePotGui extends JFrame {
 	public CoffeePotGui() {
 		// super();
 		ProductList pl = new ProductList();
+		ChangeMachine cm = new ChangeMachine();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 600);
@@ -36,9 +36,6 @@ public class CoffeePotGui extends JFrame {
 		JPanel topPanel = new JPanel();
 		topPanel.setBounds(10, 11, 364, 85);
 		contentPane.add(topPanel);
-
-		JTextArea textArea = new JTextArea();
-		topPanel.add(textArea);
 
 		// beverage menu panel
 		JPanel bevPanel = new JPanel();
@@ -71,6 +68,54 @@ public class CoffeePotGui extends JFrame {
 		cashPanel.setLayout(null);
 		cashPanel.setBounds(10, 329, 364, 100);
 		contentPane.add(cashPanel);
+
+		JButton btnRcard = new JButton("rCard");
+		btnRcard.setBounds(70, 11, 89, 23);
+		cashPanel.add(btnRcard);
+
+		JButton btnCash = new JButton("Cash");
+		btnCash.setBounds(197, 11, 89, 23);
+		cashPanel.add(btnCash);
+
+		JButton nickelButton = new JButton("5");
+		nickelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cm.insertNickel();
+			}
+		});
+		nickelButton.setBounds(25, 65, 50, 25);
+		cashPanel.add(nickelButton);
+
+		JButton dimeButton = new JButton("10");
+		dimeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cm.insertDime();
+			}
+		});
+		dimeButton.setBounds(109, 65, 50, 25);
+		cashPanel.add(dimeButton);
+
+		JButton quarterButton = new JButton("25");
+		quarterButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cm.insertQuarter();
+			}
+		});
+		quarterButton.setBounds(197, 65, 50, 25);
+		cashPanel.add(quarterButton);
+
+		JButton dollarButton = new JButton("1");
+		dollarButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cm.insertDollar();
+			}
+		});
+		dollarButton.setBounds(286, 65, 50, 25);
+		cashPanel.add(dollarButton);
 
 		// order & cancel order panel
 		JPanel orderPanel = new JPanel();
