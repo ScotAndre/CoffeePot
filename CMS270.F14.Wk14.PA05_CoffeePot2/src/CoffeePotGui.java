@@ -66,6 +66,7 @@ public class CoffeePotGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				order.add(coffee);
+				System.out.println("Ordered a coffee");
 			}
 		});
 
@@ -467,6 +468,6 @@ public class CoffeePotGui extends JFrame {
 		});
 		btnCoinReturn.setBounds(220, 11, 100, 45);
 		orderPanel.add(btnCoinReturn);
-		order.cancelOrder();
+		// order.cancelOrder();
 	}
 }
