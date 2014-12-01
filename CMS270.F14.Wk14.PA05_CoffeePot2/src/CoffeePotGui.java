@@ -84,50 +84,6 @@ public class CoffeePotGui extends JFrame {
 			bevPanel.add(bevButtons[i]);
 		}
 
-		bevButtons[0].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				order.add(coffee);
-				cm.addToPurchase(coffee.getPrice());
-				double total = cm.getTotalPurchase() / 100.0;
-				txtAreaRight.append("Total:\n $ " + df.format(total));
-			}
-		});
-
-		bevButtons[1].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				order.add(decaf);
-				cm.addToPurchase(decaf.getPrice());
-				double total = cm.getTotalPurchase() / 100.0;
-				txtAreaRight.append("Total:\n $ " + df.format(total));
-			}
-		});
-
-		bevButtons[2].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				order.add(tea);
-				cm.addToPurchase(tea.getPrice());
-				double total = cm.getTotalPurchase() / 100.0;
-				txtAreaRight.append("Total:\n $ " + df.format(total));
-			}
-		});
-
-		bevButtons[3].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				order.add(soup);
-				cm.addToPurchase(soup.getPrice());
-				double total = cm.getTotalPurchase() / 100.0;
-				txtAreaRight.append("Total:\n $ " + df.format(total));
-			}
-		});
-
 		// Condiment Buttons
 		JButton btnPlusCream = new JButton("+");
 		JButton btnMinCream = new JButton("-");
@@ -277,6 +233,7 @@ public class CoffeePotGui extends JFrame {
 				dimeButton.setEnabled(false);
 				quarterButton.setEnabled(false);
 				dollarButton.setEnabled(false);
+				txtAreaCenter.append("rCard\n");
 			}
 		});
 		btnRcard.setBounds(70, 11, 89, 23);
@@ -302,7 +259,7 @@ public class CoffeePotGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cm.insertNickel();
 				System.out.println("Your total inserted is: "
-						+ cm.checkInsertedMoney());
+						+ cm.getInsertedAmount());
 				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
@@ -316,7 +273,7 @@ public class CoffeePotGui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				cm.insertDime();
 				System.out.println("Your total inserted is: "
-						+ cm.checkInsertedMoney());
+						+ cm.getInsertedAmount());
 				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
@@ -330,7 +287,7 @@ public class CoffeePotGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cm.insertQuarter();
 				System.out.println("Your total inserted is: "
-						+ cm.checkInsertedMoney());
+						+ cm.getInsertedAmount());
 				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
@@ -344,7 +301,7 @@ public class CoffeePotGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cm.insertDollar();
 				System.out.println("Your total inserted is: "
-						+ cm.checkInsertedMoney());
+						+ cm.getInsertedAmount());
 				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
@@ -359,23 +316,15 @@ public class CoffeePotGui extends JFrame {
 		contentPane.add(orderPanel);
 
 		btnOrderButton.setBounds(39, 11, 100, 45);
-		// if payment is set to rCard - disable coin buttons
-		// if payment is set to rCard - enable order button
-		// if payment is set to cash - only enable order button if
-		// enough money has been inserted
-		if (!cm.getPaymentType()) {
-			btnOrderButton.setEnabled(true);
-		} else {
-			btnOrderButton.setEnabled(false);
-		}
 
 		// ActionListener for Order Button
 		btnOrderButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				for (int i = 0; i < order.getOrder().size(); i++) {
-					System.out.println(order.getOrder().get(i));
-					btnPlusCream.setEnabled(false);
+				System.out.println("At checkout inserted monies: "
+						+ cm.getInsertedAmount() + " and total purchase was: "
+						+ cm.getTotalPurchase());
+				if (cm.getTotalPurchase() <= cm.getInsertedAmount()) {
 					btnMinCream.setEnabled(false);
 					btnPlusSugar.setEnabled(false);
 					btnMinSugar.setEnabled(false);
@@ -385,6 +334,12 @@ public class CoffeePotGui extends JFrame {
 					creamWanted = 0;
 					lemonWanted = 0;
 					sugarWanted = 0;
+					txtAreaRight.setText("");
+					txtAreaLeft.setText("");
+				} else {
+					txtAreaLeft.append("Please insert\nanother "
+							+ (cm.getTotalPurchase() - cm.getInsertedAmount())
+							+ " cents.");
 				}
 			}
 		});
@@ -395,9 +350,9 @@ public class CoffeePotGui extends JFrame {
 		btnCoinReturn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cm.makeChange(cm.checkInsertedMoney());
-				btnOrderButton.setEnabled(false);
+				cm.coinReturn();
 				order.cancelOrder();
+				btnOrderButton.setEnabled(false);
 				btnPlusCream.setEnabled(false);
 				btnMinCream.setEnabled(false);
 				btnPlusSugar.setEnabled(false);
@@ -420,6 +375,11 @@ public class CoffeePotGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				order.add(coffee);
+				cm.addToPurchase(coffee.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("\tTotal:\n $ " + df.format(total) + "\n");
+
 				if (cream.getInventory() > creamWanted) {
 					btnPlusCream.setEnabled(true);
 				} else {
@@ -450,6 +410,11 @@ public class CoffeePotGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				order.add(decaf);
+				cm.addToPurchase(decaf.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("Total:\n $ " + df.format(total));
+
 				if (cream.getInventory() > creamWanted) {
 					btnPlusCream.setEnabled(true);
 				} else {
@@ -480,6 +445,11 @@ public class CoffeePotGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				order.add(tea);
+				cm.addToPurchase(tea.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("Total:\n $ " + df.format(total));
+
 				if (cream.getInventory() > creamWanted) {
 					btnPlusCream.setEnabled(true);
 				} else {
@@ -519,6 +489,11 @@ public class CoffeePotGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				order.add(soup);
+				cm.addToPurchase(soup.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("Total:\n $ " + df.format(total));
+
 				btnPlusCream.setEnabled(false);
 				btnMinCream.setEnabled(false);
 				btnPlusSugar.setEnabled(false);

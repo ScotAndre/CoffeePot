@@ -100,11 +100,19 @@ public class ChangeMachine {
 	}
 
 	/**
+	 * Coin Return
+	 */
+	public void coinReturn() {
+		makeChange(moneyInserted);
+		totalPurchase = 0;
+	}
+
+	/**
 	 * Provides the total amount of money a user has inserted.
 	 * 
 	 * @return int total money inserted into the machine in cents
 	 */
-	public int checkInsertedMoney() {
+	public int getInsertedAmount() {
 		return moneyInserted;
 	}
 
