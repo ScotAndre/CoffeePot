@@ -29,6 +29,7 @@ public class Coffee extends Beverage {
 		return description;
 	}
 
+	@Override
 	public int getInventory() {
 		return inventory;
 	}
@@ -41,6 +42,7 @@ public class Coffee extends Beverage {
 	@Override
 	public void dispense() {
 		inventory--;
+		System.out.println("Coffee dispensed.");
 	}
 
 	public boolean hasEnough(int num) {

@@ -28,14 +28,16 @@ public class Order {
 	}
 
 	public void cancelOrder() {
-		order = null;
+		for (int i = order.size() - 1; i >= 0; i--) {
+			order.remove(order.get(i));
+		}
 	}
 
 	public void dispense() {
-		for (int i = 0; i < order.size(); i++) {
+		for (int i = order.size(); i >= 0; i++) {
 			order.get(i).dispense();
+			order.remove(i);
 		}
-		order = null;
 	}
 
 }

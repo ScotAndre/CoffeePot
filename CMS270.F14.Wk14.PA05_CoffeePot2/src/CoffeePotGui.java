@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class CoffeePotGui extends JFrame {
 	private int creamWanted = 0;
 	private int lemonWanted = 0;
@@ -52,10 +53,11 @@ public class CoffeePotGui extends JFrame {
 		JPanel bevPanel = new JPanel();
 		bevPanel.setBounds(10, 107, 364, 100);
 		contentPane.add(bevPanel);
+
+		// build an array of buttons, one for each beverage
 		JButton[] bevButtons = new JButton[pl.getAllBeverages().size()];
 		for (int i = 0; i < pl.getAllBeverages().size(); i++) {
 			beverage = (BeverageComponent) pl.getAllBeverages().get(i);
-			// System.out.println(beverage.getName());
 			bevButtons[i] = new JButton(
 					((Beverage) pl.getAllBeverages().get(i)).getName());
 			bevPanel.add(bevButtons[i]);
@@ -66,7 +68,6 @@ public class CoffeePotGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				order.add(coffee);
-				System.out.println("Ordered a coffee");
 			}
 		});
 
@@ -94,6 +95,14 @@ public class CoffeePotGui extends JFrame {
 			}
 		});
 
+		// Condiment Buttons
+		JButton btnPlusCream = new JButton("+");
+		JButton btnMinCream = new JButton("-");
+		JButton btnPlusSugar = new JButton("+");
+		JButton btnMinSugar = new JButton("-");
+		JButton btnPlusLemon = new JButton("+");
+		JButton btnMinLemon = new JButton("-");
+
 		// condiment menu panel
 		JPanel condimentPanel = new JPanel();
 		condimentPanel.setBounds(10, 218, 364, 100);
@@ -110,24 +119,9 @@ public class CoffeePotGui extends JFrame {
 		condimentPanel.add(condimentSugarButton);
 		condimentPanel.add(condimentLemonButton);
 
-		// Buttons
-		JButton btnPlusCream = new JButton("+");
-		JButton btnMinCream = new JButton("-");
-		JButton btnPlusSugar = new JButton("+");
-		JButton btnMinSugar = new JButton("-");
-		JButton btnPlusLemon = new JButton("+");
-		JButton btnMinLemon = new JButton("-");
-		JButton btnOrderButton = new JButton("Order");
-		JButton btnCoinReturn = new JButton("Coin Return");
-		JButton nickelButton = new JButton(".05");
-		JButton dimeButton = new JButton(".10");
-		JButton quarterButton = new JButton(".25");
-		JButton dollarButton = new JButton("1.00");
-
-		nickelButton.setEnabled(false);
-		dimeButton.setEnabled(false);
-		quarterButton.setEnabled(false);
-		dollarButton.setEnabled(false);
+		btnPlusCream.setBounds(20, 30, 89, 23);
+		btnPlusCream.setEnabled(false);
+		condimentPanel.add(btnPlusCream);
 
 		// ActionListener for Cream Plus Button
 		btnPlusCream.addActionListener(new ActionListener() {
@@ -141,9 +135,6 @@ public class CoffeePotGui extends JFrame {
 				btnMinCream.setEnabled(true);
 			}
 		});
-		btnPlusCream.setBounds(20, 30, 89, 23);
-		btnPlusCream.setEnabled(false);
-		condimentPanel.add(btnPlusCream);
 
 		// ActionListener for Cream Minus Button
 		btnMinCream.addActionListener(new ActionListener() {
@@ -225,123 +216,24 @@ public class CoffeePotGui extends JFrame {
 		btnMinLemon.setEnabled(false);
 		condimentPanel.add(btnMinLemon);
 
-		// ActionListener for Coffee
-		bevButtons[0].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (cream.getInventory() > creamWanted) {
-					btnPlusCream.setEnabled(true);
-				} else {
-					btnPlusCream.setEnabled(false);
-				}
-				if (creamWanted > 0) {
-					btnMinCream.setEnabled(true);
-				} else {
-					btnMinCream.setEnabled(false);
-				}
-				if (sugar.getInventory() > sugarWanted) {
-					btnPlusSugar.setEnabled(true);
-				} else {
-					btnPlusSugar.setEnabled(false);
-				}
-				if (sugarWanted > 0) {
-					btnMinSugar.setEnabled(true);
-				} else {
-					btnMinSugar.setEnabled(false);
-				}
-				btnPlusLemon.setEnabled(false);
-				btnMinLemon.setEnabled(false);
-			}
-		});
-
-		// ActionListener for Decaf
-		bevButtons[1].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (cream.getInventory() > creamWanted) {
-					btnPlusCream.setEnabled(true);
-				} else {
-					btnPlusCream.setEnabled(false);
-				}
-				if (creamWanted > 0) {
-					btnMinCream.setEnabled(true);
-				} else {
-					btnMinCream.setEnabled(false);
-				}
-				if (sugar.getInventory() > sugarWanted) {
-					btnPlusSugar.setEnabled(true);
-				} else {
-					btnPlusSugar.setEnabled(false);
-				}
-				if (sugarWanted > 0) {
-					btnMinSugar.setEnabled(true);
-				} else {
-					btnMinSugar.setEnabled(false);
-				}
-				btnPlusLemon.setEnabled(false);
-				btnMinLemon.setEnabled(false);
-			}
-		});
-
-		bevButtons[2].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (cream.getInventory() > creamWanted) {
-					btnPlusCream.setEnabled(true);
-				} else {
-					btnPlusCream.setEnabled(false);
-				}
-				if (creamWanted > 0) {
-					btnMinCream.setEnabled(true);
-				} else {
-					btnMinCream.setEnabled(false);
-				}
-				if (sugar.getInventory() > sugarWanted) {
-					btnPlusSugar.setEnabled(true);
-				} else {
-					btnPlusSugar.setEnabled(false);
-				}
-				if (sugarWanted > 0) {
-					btnMinSugar.setEnabled(true);
-				} else {
-					btnMinSugar.setEnabled(false);
-				}
-				if (lemon.getInventory() > lemonWanted) {
-					btnPlusLemon.setEnabled(true);
-				} else {
-					btnPlusLemon.setEnabled(false);
-				}
-				if (lemonWanted > 0) {
-					btnMinLemon.setEnabled(true);
-				} else {
-					btnMinLemon.setEnabled(false);
-				}
-
-			}
-		});
-
-		bevButtons[3].addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				btnPlusCream.setEnabled(false);
-				btnMinCream.setEnabled(false);
-				btnPlusSugar.setEnabled(false);
-				btnMinSugar.setEnabled(false);
-				btnPlusLemon.setEnabled(false);
-				btnMinLemon.setEnabled(false);
-
-			}
-		});
-
 		// cash control panel
 		JPanel cashPanel = new JPanel();
 		cashPanel.setLayout(null);
 		cashPanel.setBounds(10, 329, 364, 100);
 		contentPane.add(cashPanel);
+
+		// Cash Control Buttons
+		JButton btnOrderButton = new JButton("Order");
+		JButton btnCoinReturn = new JButton("Coin Return");
+		JButton nickelButton = new JButton(".05");
+		JButton dimeButton = new JButton(".10");
+		JButton quarterButton = new JButton(".25");
+		JButton dollarButton = new JButton("1.00");
+
+		nickelButton.setEnabled(false);
+		dimeButton.setEnabled(false);
+		quarterButton.setEnabled(false);
+		dollarButton.setEnabled(false);
 
 		JButton btnRcard = new JButton("rCard");
 		btnRcard.addActionListener(new ActionListener() {
@@ -452,6 +344,10 @@ public class CoffeePotGui extends JFrame {
 					btnMinSugar.setEnabled(false);
 					btnPlusLemon.setEnabled(false);
 					btnMinLemon.setEnabled(false);
+					order.dispense();
+					creamWanted = 0;
+					lemonWanted = 0;
+					sugarWanted = 0;
 				}
 			}
 		});
@@ -464,10 +360,137 @@ public class CoffeePotGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cm.makeChange(cm.checkInsertedMoney());
 				btnOrderButton.setEnabled(false);
+				order.cancelOrder();
+				btnPlusCream.setEnabled(false);
+				btnMinCream.setEnabled(false);
+				btnPlusSugar.setEnabled(false);
+				btnMinSugar.setEnabled(false);
+				btnPlusLemon.setEnabled(false);
+				btnMinLemon.setEnabled(false);
+				creamWanted = 0;
+				lemonWanted = 0;
+				sugarWanted = 0;
 			}
 		});
 		btnCoinReturn.setBounds(220, 11, 100, 45);
 		orderPanel.add(btnCoinReturn);
-		// order.cancelOrder();
+
+		// *******************************************
+		// ActionListeners for Beverages
+		// *******************************************
+		// ActionListener for Coffee
+		bevButtons[0].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (cream.getInventory() > creamWanted) {
+					btnPlusCream.setEnabled(true);
+				} else {
+					btnPlusCream.setEnabled(false);
+				}
+				if (creamWanted > 0) {
+					btnMinCream.setEnabled(true);
+				} else {
+					btnMinCream.setEnabled(false);
+				}
+				if (sugar.getInventory() > sugarWanted) {
+					btnPlusSugar.setEnabled(true);
+				} else {
+					btnPlusSugar.setEnabled(false);
+				}
+				if (sugarWanted > 0) {
+					btnMinSugar.setEnabled(true);
+				} else {
+					btnMinSugar.setEnabled(false);
+				}
+				btnPlusLemon.setEnabled(false);
+				btnMinLemon.setEnabled(false);
+			}
+		});
+
+		// ActionListener for Decaf
+		bevButtons[1].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (cream.getInventory() > creamWanted) {
+					btnPlusCream.setEnabled(true);
+				} else {
+					btnPlusCream.setEnabled(false);
+				}
+				if (creamWanted > 0) {
+					btnMinCream.setEnabled(true);
+				} else {
+					btnMinCream.setEnabled(false);
+				}
+				if (sugar.getInventory() > sugarWanted) {
+					btnPlusSugar.setEnabled(true);
+				} else {
+					btnPlusSugar.setEnabled(false);
+				}
+				if (sugarWanted > 0) {
+					btnMinSugar.setEnabled(true);
+				} else {
+					btnMinSugar.setEnabled(false);
+				}
+				btnPlusLemon.setEnabled(false);
+				btnMinLemon.setEnabled(false);
+			}
+		});
+
+		// ActionListener for Tea
+		bevButtons[2].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (cream.getInventory() > creamWanted) {
+					btnPlusCream.setEnabled(true);
+				} else {
+					btnPlusCream.setEnabled(false);
+				}
+				if (creamWanted > 0) {
+					btnMinCream.setEnabled(true);
+				} else {
+					btnMinCream.setEnabled(false);
+				}
+				if (sugar.getInventory() > sugarWanted) {
+					btnPlusSugar.setEnabled(true);
+				} else {
+					btnPlusSugar.setEnabled(false);
+				}
+				if (sugarWanted > 0) {
+					btnMinSugar.setEnabled(true);
+				} else {
+					btnMinSugar.setEnabled(false);
+				}
+				if (lemon.getInventory() > lemonWanted) {
+					btnPlusLemon.setEnabled(true);
+				} else {
+					btnPlusLemon.setEnabled(false);
+				}
+				if (lemonWanted > 0) {
+					btnMinLemon.setEnabled(true);
+				} else {
+					btnMinLemon.setEnabled(false);
+				}
+
+			}
+		});
+
+		// ActionListener for Soup
+		bevButtons[3].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				btnPlusCream.setEnabled(false);
+				btnMinCream.setEnabled(false);
+				btnPlusSugar.setEnabled(false);
+				btnMinSugar.setEnabled(false);
+				btnPlusLemon.setEnabled(false);
+				btnMinLemon.setEnabled(false);
+
+			}
+		});
+
 	}
 }
