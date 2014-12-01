@@ -23,6 +23,7 @@ public class ChangeMachine {
 	private int cashBalance = 0;
 	private int rCardBalance = 0;
 	private int moneyInserted = 0;
+	private int totalPurchase = 0;
 	private boolean payWithRCard = false;
 
 	public ChangeMachine() {
@@ -58,8 +59,7 @@ public class ChangeMachine {
 	}
 
 	/**
-	 * @return true if rCard payment type is selected,
-	 *         false if otherwise
+	 * @return true if rCard payment type is selected, false if otherwise
 	 */
 	public boolean getPaymentType() {
 		if (payWithRCard) {
@@ -89,13 +89,14 @@ public class ChangeMachine {
 		dollars++;
 	}
 
-	public void checkOut(int totalBill) {
+	public void checkOut() {
 		if (payWithRCard) {
-			rCardBalance += totalBill;
+			rCardBalance += totalPurchase;
 		} else {
-			moneyInserted -= totalBill;
+			moneyInserted -= totalPurchase;
 			makeChange(moneyInserted);
-			cashBalance += totalBill;
+			cashBalance += totalPurchase;
+			totalPurchase = 0;
 		}
 	}
 
@@ -131,7 +132,7 @@ public class ChangeMachine {
 		}
 	}
 
-	public int totalBalance() {
+	public int getTotalBankBalance() {
 		return (cashBalance + rCardBalance);
 	}
 
@@ -141,6 +142,10 @@ public class ChangeMachine {
 
 	public int getCashBalance() {
 		return cashBalance;
+	}
+
+	public int getTotalPurchase() {
+		return totalPurchase;
 	}
 
 	public void makeChange(int change) {

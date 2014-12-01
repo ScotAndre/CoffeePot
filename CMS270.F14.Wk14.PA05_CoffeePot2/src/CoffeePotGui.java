@@ -48,13 +48,7 @@ public class CoffeePotGui extends JFrame {
 		contentPane.add(topPanel);
 		topPanel.setLayout(null);
 
-		// Text Area Settings
-		// JTextArea textArea = new JTextArea();
-		// textArea.setTabSize(4);
-		// textArea.setRows(4);
-		// textArea.setColumns(45);
-		// topPanel.add(textArea);
-
+		// Text areas at the top of the window
 		JTextArea txtAreaRight = new JTextArea();
 		txtAreaRight.setBounds(244, 0, 121, 85);
 		txtAreaRight.setTabSize(4);
@@ -295,7 +289,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertNickel();
 				System.out.println("Your total inserted is: "
 						+ cm.checkInsertedMoney());
-				if (cm.hasPaidEnough(cm.totalBalance())) {
+				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
@@ -309,7 +303,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertDime();
 				System.out.println("Your total inserted is: "
 						+ cm.checkInsertedMoney());
-				if (cm.hasPaidEnough(cm.totalBalance())) {
+				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
@@ -323,7 +317,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertQuarter();
 				System.out.println("Your total inserted is: "
 						+ cm.checkInsertedMoney());
-				if (cm.hasPaidEnough(cm.totalBalance())) {
+				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
@@ -337,7 +331,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertDollar();
 				System.out.println("Your total inserted is: "
 						+ cm.checkInsertedMoney());
-				if (cm.hasPaidEnough(cm.totalBalance())) {
+				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
