@@ -1,0 +1,25 @@
+Patrick:
+
+Bug: If you click three sugars the + disappears like it should but if you hit - 
+on the sugar the + does not reappear. If you hit + twice instead of three times 
+the – appears and you can hit minus twice and the minus will disappear as it 
+should. So it’s keeping track properly the + just doesn’t come back once it’s 
+gone. 
+
+Bug: I added 100 cream causing the + to disappear and then hit the - but just like 
+sugar, the + does not reappear. 
+
+Bug: When you select coffee, cash, input any money and hit order, it dispenses but 
+the money does not get decremented and does not get checked for the correct 
+price. 
+
+
+Scot:
+
+Enhancement:  when a new transaction is started, it doesn't clear the 
+txtAreaLeft or txtAreaRight boxes.
+
+Bug:  does not disable the coin buttons after checking out with cash.
+
+Bug:  sometimes the order button is disabled when not enough cash is inserted.
+
