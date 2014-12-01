@@ -197,6 +197,7 @@ public class ChangeMachine {
 		int dimesReturned = 0;
 		int nickelsReturned = 0;
 
+		System.out.println("Your change is: " + change);
 		// calculate number of dollars to return
 		// out of dollars - return quarters instead
 		dollarsReturned = change / 100;

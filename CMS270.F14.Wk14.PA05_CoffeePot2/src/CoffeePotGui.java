@@ -324,25 +324,45 @@ public class CoffeePotGui extends JFrame {
 		btnOrderButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("At checkout inserted monies: "
-						+ cm.getInsertedAmount() + " and total purchase was: "
-						+ cm.getTotalPurchase());
-				if (cm.getTotalPurchase() <= cm.getInsertedAmount()) {
+				if (cm.getPaymentType()) {
+					// rCard Payment
+					order.dispense();
+					cm.checkOut();
+					btnOrderButton.setEnabled(false);
+					btnPlusCream.setEnabled(false);
 					btnMinCream.setEnabled(false);
 					btnPlusSugar.setEnabled(false);
 					btnMinSugar.setEnabled(false);
 					btnPlusLemon.setEnabled(false);
 					btnMinLemon.setEnabled(false);
-					order.dispense();
 					creamWanted = 0;
 					lemonWanted = 0;
 					sugarWanted = 0;
-					txtAreaRight.setText("");
-					txtAreaLeft.setText("");
 				} else {
-					txtAreaLeft.append("Please insert\nanother "
-							+ (cm.getTotalPurchase() - cm.getInsertedAmount())
-							+ " cents.");
+					// cash payment
+					if (cm.getInsertedAmount() >= cm.getTotalPurchase()) {
+						order.dispense();
+						txtAreaLeft.append("Your change\nof $ "
+								+ df.format(((cm.getInsertedAmount() - cm
+										.getTotalPurchase()) / 100.0))
+								+ " has been\nrefunded.");
+
+						cm.checkOut();
+						btnOrderButton.setEnabled(false);
+						btnPlusCream.setEnabled(false);
+						btnMinCream.setEnabled(false);
+						btnPlusSugar.setEnabled(false);
+						btnMinSugar.setEnabled(false);
+						btnPlusLemon.setEnabled(false);
+						btnMinLemon.setEnabled(false);
+						creamWanted = 0;
+						lemonWanted = 0;
+						sugarWanted = 0;
+					} else {
+						txtAreaLeft.append("Please insert\n another "
+								+ (cm.getTotalPurchase() - cm
+										.getInsertedAmount()) + " cents.");
+					}
 				}
 			}
 		});
@@ -353,7 +373,6 @@ public class CoffeePotGui extends JFrame {
 		btnCoinReturn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cm.coinReturn();
 				order.cancelOrder();
 				btnOrderButton.setEnabled(false);
 				btnPlusCream.setEnabled(false);
@@ -362,9 +381,20 @@ public class CoffeePotGui extends JFrame {
 				btnMinSugar.setEnabled(false);
 				btnPlusLemon.setEnabled(false);
 				btnMinLemon.setEnabled(false);
+				cm.setPaymentToRCard();
+				nickelButton.setEnabled(false);
+				dimeButton.setEnabled(false);
+				quarterButton.setEnabled(false);
+				dollarButton.setEnabled(false);
 				creamWanted = 0;
 				lemonWanted = 0;
 				sugarWanted = 0;
+				txtAreaLeft.setText("");
+				txtAreaRight.setText("");
+				txtAreaLeft.append("$ "
+						+ df.format((cm.getInsertedAmount() / 100.0))
+						+ " has been\nrefunded.");
+				cm.coinReturn();
 			}
 		});
 		btnCoinReturn.setBounds(220, 11, 100, 45);

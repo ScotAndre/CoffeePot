@@ -27,6 +27,7 @@ public class Cream extends Condiment {
 		return description;
 	}
 
+	@Override
 	public int getInventory() {
 		return inventory;
 	}
@@ -34,5 +35,6 @@ public class Cream extends Condiment {
 	@Override
 	public void dispense() {
 		inventory--;
+		System.out.println("Cream dispensed.");
 	}
 }

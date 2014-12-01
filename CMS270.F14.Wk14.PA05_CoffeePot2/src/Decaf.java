@@ -29,6 +29,7 @@ public class Decaf extends Beverage {
 		return description;
 	}
 
+	@Override
 	public int getInventory() {
 		return inventory;
 	}
@@ -52,4 +53,9 @@ public class Decaf extends Beverage {
 		}
 		return false;
 	}// end isAcceptable()
+
+	@Override
+	public String toString() {
+		return name + "\t" + PRICE;
+	}
 }

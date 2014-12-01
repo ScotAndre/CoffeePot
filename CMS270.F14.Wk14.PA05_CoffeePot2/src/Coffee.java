@@ -62,4 +62,9 @@ public class Coffee extends Beverage {
 		}
 		return false;
 	}// end isAcceptable()
+
+	@Override
+	public String toString() {
+		return name + "\t" + PRICE;
+	}
 }

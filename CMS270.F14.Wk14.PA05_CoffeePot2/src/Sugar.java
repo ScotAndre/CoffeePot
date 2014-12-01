@@ -35,5 +35,6 @@ public class Sugar extends Condiment {
 	@Override
 	public void dispense() {
 		inventory--;
+		System.out.println("Sugar dispensed.");
 	}
 }

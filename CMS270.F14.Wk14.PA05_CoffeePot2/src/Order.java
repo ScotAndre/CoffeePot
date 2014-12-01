@@ -34,8 +34,10 @@ public class Order {
 	}
 
 	public void dispense() {
+		BeverageComponent beverage;
 		for (int i = order.size() - 1; i >= 0; i--) {
-			order.get(i).dispense();
+			beverage = order.get(i);
+			beverage.dispense();
 			order.remove(i);
 		}
 	}
