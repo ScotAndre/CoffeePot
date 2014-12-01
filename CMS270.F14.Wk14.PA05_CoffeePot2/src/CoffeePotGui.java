@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ public class CoffeePotGui extends JFrame {
 	 */
 	public CoffeePotGui() {
 		super();
+		DecimalFormat df = new DecimalFormat("##0.00");
 		JPanel contentPane;
 		Order order = new Order();
 		BeverageComponent beverage;
@@ -87,6 +89,9 @@ public class CoffeePotGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				order.add(coffee);
+				cm.addToPurchase(coffee.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("Total:\n $ " + df.format(total));
 			}
 		});
 
@@ -95,6 +100,9 @@ public class CoffeePotGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				order.add(decaf);
+				cm.addToPurchase(decaf.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("Total:\n $ " + df.format(total));
 			}
 		});
 
@@ -103,6 +111,9 @@ public class CoffeePotGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				order.add(tea);
+				cm.addToPurchase(tea.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("Total:\n $ " + df.format(total));
 			}
 		});
 
@@ -111,6 +122,9 @@ public class CoffeePotGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				order.add(soup);
+				cm.addToPurchase(soup.getPrice());
+				double total = cm.getTotalPurchase() / 100.0;
+				txtAreaRight.append("Total:\n $ " + df.format(total));
 			}
 		});
 
@@ -345,7 +359,11 @@ public class CoffeePotGui extends JFrame {
 		contentPane.add(orderPanel);
 
 		btnOrderButton.setBounds(39, 11, 100, 45);
-		if (cm.getPaymentType()) {
+		// if payment is set to rCard - disable coin buttons
+		// if payment is set to rCard - enable order button
+		// if payment is set to cash - only enable order button if
+		// enough money has been inserted
+		if (!cm.getPaymentType()) {
 			btnOrderButton.setEnabled(true);
 		} else {
 			btnOrderButton.setEnabled(false);

@@ -148,6 +148,10 @@ public class ChangeMachine {
 		return totalPurchase;
 	}
 
+	public void addToPurchase(int itemPrice) {
+		totalPurchase += itemPrice;
+	}
+
 	public void makeChange(int change) {
 		int balance = change;
 		int dollarsReturned = 0;
@@ -196,5 +200,6 @@ public class ChangeMachine {
 		} else {
 			returnNickel(nickelsReturned);
 		}
+		totalPurchase = 0;
 	}
 }
