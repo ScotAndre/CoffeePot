@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
@@ -45,9 +46,33 @@ public class CoffeePotGui extends JFrame {
 		JPanel topPanel = new JPanel();
 		topPanel.setBounds(10, 11, 364, 85);
 		contentPane.add(topPanel);
+		topPanel.setLayout(null);
 
-		// JTextPane textPane = new JTextPane();
-		// topPanel.add(textPane);
+		// Text Area Settings
+		// JTextArea textArea = new JTextArea();
+		// textArea.setTabSize(4);
+		// textArea.setRows(4);
+		// textArea.setColumns(45);
+		// topPanel.add(textArea);
+
+		JTextArea txtAreaRight = new JTextArea();
+		txtAreaRight.setBounds(244, 0, 121, 85);
+		txtAreaRight.setTabSize(4);
+		txtAreaRight.setRows(4);
+		txtAreaRight.setColumns(15);
+		topPanel.add(txtAreaRight);
+		JTextArea txtAreaCenter = new JTextArea();
+		txtAreaCenter.setBounds(122, 0, 121, 85);
+		txtAreaCenter.setTabSize(4);
+		txtAreaCenter.setRows(4);
+		txtAreaCenter.setColumns(15);
+		topPanel.add(txtAreaCenter);
+		JTextArea txtAreaLeft = new JTextArea();
+		txtAreaLeft.setBounds(0, 0, 121, 85);
+		txtAreaLeft.setTabSize(4);
+		txtAreaLeft.setRows(4);
+		txtAreaLeft.setColumns(15);
+		topPanel.add(txtAreaLeft);
 
 		// beverage menu panel
 		JPanel bevPanel = new JPanel();
