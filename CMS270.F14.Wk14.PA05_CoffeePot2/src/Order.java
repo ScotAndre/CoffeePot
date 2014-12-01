@@ -34,7 +34,7 @@ public class Order {
 	}
 
 	public void dispense() {
-		for (int i = order.size(); i >= 0; i++) {
+		for (int i = order.size() - 1; i >= 0; i--) {
 			order.get(i).dispense();
 			order.remove(i);
 		}
