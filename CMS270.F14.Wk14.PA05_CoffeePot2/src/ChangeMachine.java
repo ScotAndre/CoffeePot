@@ -34,6 +34,10 @@ public class ChangeMachine {
 		cashBalance = nickels * 5 + dimes * 10 + quarters * 25 + dollars * 100;
 	}
 
+	/**
+	 * Console method used to ask a user which payment method that they wish to
+	 * use.
+	 */
 	public void selectPaymentType() {
 		Scanner keyboard = new Scanner(System.in);
 		int choice = 0;
@@ -50,16 +54,27 @@ public class ChangeMachine {
 		}
 	}
 
+	/**
+	 * Sets the payment type to <code>true</code> signifying that the customer
+	 * wants to pay with their rCard
+	 */
 	public void setPaymentToRCard() {
 		payWithRCard = true;
 	}
 
+	/**
+	 * Sets the payment type to <code>false</code> signifying that the customer
+	 * wants to pay with cash
+	 */
 	public void setPaymentToCash() {
 		payWithRCard = false;
 	}
 
 	/**
-	 * @return true if rCard payment type is selected, false if otherwise
+	 * Get the method of payment
+	 * 
+	 * @return <code>true</code> if rCard payment type is selected,
+	 *         <code>false</code> if otherwise
 	 */
 	public boolean getPaymentType() {
 		if (payWithRCard) {
@@ -69,29 +84,13 @@ public class ChangeMachine {
 		}
 	}
 
-	public void insertNickel() {
-		moneyInserted += 5;
-		nickels++;
-	}
-
-	public void insertDime() {
-		moneyInserted += 10;
-		dimes++;
-	}
-
-	public void insertQuarter() {
-		moneyInserted += 25;
-		quarters++;
-	}
-
-	public void insertDollar() {
-		moneyInserted += 100;
-		dollars++;
-	}
-
+	/**
+	 * Finalizes the sale, charges the user and if necessary gives change.
+	 */
 	public void checkOut() {
 		if (payWithRCard) {
 			rCardBalance += totalPurchase;
+			totalPurchase = 0;
 		} else {
 			moneyInserted -= totalPurchase;
 			makeChange(moneyInserted);
@@ -100,30 +99,25 @@ public class ChangeMachine {
 		}
 	}
 
-	public void returnNickel(int numToReturn) {
-		moneyInserted -= numToReturn * 5;
-		nickels--;
-	}
-
-	public void returnDime(int numToReturn) {
-		moneyInserted -= numToReturn * 10;
-		dimes--;
-	}
-
-	public void returnQuarters(int numToReturn) {
-		moneyInserted -= numToReturn * 25;
-		quarters--;
-	}
-
-	public void returnDollars(int numToReturn) {
-		moneyInserted -= numToReturn * 100;
-		dollars--;
-	}
-
+	/**
+	 * Provides the total amount of money a user has inserted.
+	 * 
+	 * @return int total money inserted into the machine in cents
+	 */
 	public int checkInsertedMoney() {
 		return moneyInserted;
 	}
 
+	/**
+	 * Verifies whether a user has inserted enough money to cover the purchase
+	 * amount.
+	 * 
+	 * @param totalBill
+	 *            the total amount to be charged to the user
+	 * @return <code>true</code> if the amount of money that the user inserted
+	 *         is greater than or equal to the total amount due,
+	 *         <code>false</code> otherwise.
+	 */
 	public boolean hasPaidEnough(int totalBill) {
 		if (payWithRCard || moneyInserted >= totalBill) {
 			return true;
@@ -132,26 +126,62 @@ public class ChangeMachine {
 		}
 	}
 
+	/**
+	 * Gives the total amount of money that is in the bank.
+	 * 
+	 * @return int represents the total amount of money in the bank in cents.
+	 */
 	public int getTotalBankBalance() {
 		return (cashBalance + rCardBalance);
 	}
 
+	/**
+	 * Gives the total amount of money that has been collected from customers
+	 * using their rCard.
+	 * 
+	 * @return int represents the total amount of money collected via a rCard in
+	 *         cents.
+	 */
 	public int getRCardBalance() {
 		return rCardBalance;
 	}
 
+	/**
+	 * Gives the total amount of cash currently in the bank.
+	 * 
+	 * @return int represents the total amount currently stored in the bank in
+	 *         cents.
+	 */
 	public int getCashBalance() {
 		return cashBalance;
 	}
 
+	/**
+	 * Provides the users total purchase amount.
+	 * 
+	 * @return int the total amount of the current purchase in cents.
+	 */
 	public int getTotalPurchase() {
 		return totalPurchase;
 	}
 
+	/**
+	 * Adds the amount to the total purchase price.
+	 * 
+	 * @param itemPrice
+	 *            an integer representing the purchase price of an item.
+	 */
 	public void addToPurchase(int itemPrice) {
 		totalPurchase += itemPrice;
 	}
 
+	/**
+	 * Returns the amount provided to the user.
+	 * 
+	 * @param change
+	 *            an integer representing the amount of money in cents to return
+	 *            to the user.
+	 */
 	public void makeChange(int change) {
 		int balance = change;
 		int dollarsReturned = 0;
@@ -200,6 +230,48 @@ public class ChangeMachine {
 		} else {
 			returnNickel(nickelsReturned);
 		}
-		totalPurchase = 0;
+	}
+
+	/* ******************************************
+	 * Coinage Methods:
+	 */
+	public void insertNickel() {
+		moneyInserted += 5;
+		nickels++;
+	}
+
+	public void insertDime() {
+		moneyInserted += 10;
+		dimes++;
+	}
+
+	public void insertQuarter() {
+		moneyInserted += 25;
+		quarters++;
+	}
+
+	public void insertDollar() {
+		moneyInserted += 100;
+		dollars++;
+	}
+
+	public void returnNickel(int numToReturn) {
+		moneyInserted -= numToReturn * 5;
+		nickels--;
+	}
+
+	public void returnDime(int numToReturn) {
+		moneyInserted -= numToReturn * 10;
+		dimes--;
+	}
+
+	public void returnQuarters(int numToReturn) {
+		moneyInserted -= numToReturn * 25;
+		quarters--;
+	}
+
+	public void returnDollars(int numToReturn) {
+		moneyInserted -= numToReturn * 100;
+		dollars--;
 	}
 }
