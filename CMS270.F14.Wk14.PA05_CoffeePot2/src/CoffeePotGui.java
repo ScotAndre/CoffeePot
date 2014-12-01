@@ -119,12 +119,16 @@ public class CoffeePotGui extends JFrame {
 		btnPlusCream.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				creamWanted++;
-				order.add(cream);
-				if (cream.getInventory() <= creamWanted) {
+				if (creamWanted + 1 <= cream.getInventory()) {
+					creamWanted++;
+					order.add(cream);
+				}
+				if (creamWanted == cream.getInventory()) {
 					btnPlusCream.setEnabled(false);
 				}
-				btnMinCream.setEnabled(true);
+				if (creamWanted > 0) {
+					btnMinCream.setEnabled(true);
+				}
 			}
 		});
 
@@ -132,10 +136,15 @@ public class CoffeePotGui extends JFrame {
 		btnMinCream.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				creamWanted--;
-				order.remove(cream);
+				if (creamWanted > 0) {
+					creamWanted--;
+					order.remove(cream);
+				}
 				if (creamWanted == 0) {
 					btnMinCream.setEnabled(false);
+				}
+				if (creamWanted < cream.getInventory()) {
+					btnPlusCream.setEnabled(true);
 				}
 			}
 		});
@@ -147,13 +156,16 @@ public class CoffeePotGui extends JFrame {
 		btnPlusSugar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sugarWanted++;
-				order.add(sugar);
-				if (sugar.getInventory() <= sugarWanted) {
+				if (sugarWanted + 1 <= sugar.getInventory()) {
+					sugarWanted++;
+					order.add(sugar);
+				}
+				if (sugarWanted == sugar.getInventory()) {
 					btnPlusSugar.setEnabled(false);
 				}
-				btnMinSugar.setEnabled(true);
-
+				if (sugarWanted > 0) {
+					btnMinSugar.setEnabled(true);
+				}
 			}
 		});
 		btnPlusSugar.setBounds(137, 30, 89, 23);
@@ -164,10 +176,15 @@ public class CoffeePotGui extends JFrame {
 		btnMinSugar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sugarWanted--;
-				order.remove(sugar);
+				if (sugarWanted > 0) {
+					sugarWanted--;
+					order.remove(sugar);
+				}
 				if (sugarWanted == 0) {
 					btnMinSugar.setEnabled(false);
+				}
+				if (sugarWanted < sugar.getInventory()) {
+					btnPlusSugar.setEnabled(true);
 				}
 			}
 		});
@@ -179,12 +196,16 @@ public class CoffeePotGui extends JFrame {
 		btnPlusLemon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				lemonWanted++;
-				order.add(lemon);
-				if (lemon.getInventory() <= lemonWanted) {
+				if (lemonWanted + 1 <= lemon.getInventory()) {
+					lemonWanted++;
+					order.add(lemon);
+				}
+				if (lemonWanted == lemon.getInventory()) {
 					btnPlusLemon.setEnabled(false);
 				}
-				btnMinLemon.setEnabled(true);
+				if (lemonWanted > 0) {
+					btnMinLemon.setEnabled(true);
+				}
 			}
 		});
 
@@ -192,10 +213,15 @@ public class CoffeePotGui extends JFrame {
 		btnMinLemon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				lemonWanted--;
-				order.remove(lemon);
+				if (lemonWanted > 0) {
+					lemonWanted--;
+					order.remove(lemon);
+				}
 				if (lemonWanted == 0) {
 					btnMinLemon.setEnabled(false);
+				}
+				if (lemonWanted < lemon.getInventory()) {
+					btnPlusLemon.setEnabled(true);
 				}
 			}
 		});
