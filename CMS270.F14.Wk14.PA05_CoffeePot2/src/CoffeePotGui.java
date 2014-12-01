@@ -62,6 +62,7 @@ public class CoffeePotGui extends JFrame {
 		txtAreaCenter.setTabSize(4);
 		txtAreaCenter.setRows(4);
 		txtAreaCenter.setColumns(15);
+		txtAreaCenter.append("\tMenu\n");
 		topPanel.add(txtAreaCenter);
 		JTextArea txtAreaLeft = new JTextArea();
 		txtAreaLeft.setBounds(0, 0, 121, 85);
@@ -82,6 +83,8 @@ public class CoffeePotGui extends JFrame {
 			bevButtons[i] = new JButton(
 					((Beverage) pl.getAllBeverages().get(i)).getName());
 			bevPanel.add(bevButtons[i]);
+			txtAreaCenter.append("\t" + pl.getAllBeverages().get(i).toString()
+					+ "\n");
 		}
 
 		// Condiment Buttons
