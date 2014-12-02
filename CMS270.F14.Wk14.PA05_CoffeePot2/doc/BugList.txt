@@ -3,6 +3,12 @@ Patrick:
 Bug: Start program. Choose Coffee -> Cash -> any amount of money. -> Order.
      It dispenses, but the money does not get decremented and does not get 
      checked for the correct price. 
+     
+     Checked:  It only happens the second time through
+        Coffee -> Cash -> Quarter -> Order -- will not dispense 1st time through
+        Coffee -> Cash -> Quarter -> Order -> Coin Return
+            -- will return the quarter and reset, but...
+        Coffee -> Cash -> Quarter -> Order again, it will dispense.
 
 Bug: Start program.  Choose Coffee -> rCard -> order this works, then then if
      you choose Coffee -> rCard the order button doesn't reactivate.
