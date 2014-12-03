@@ -45,6 +45,7 @@ public class Soup extends Beverage {
 	@Override
 	public void dispense() {
 		inventory--;
+		System.out.println("Soup dispensed.");
 	}
 
 	@Override

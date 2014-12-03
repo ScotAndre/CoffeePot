@@ -189,6 +189,17 @@ public class ChangeMachine {
 		totalPurchase += itemPrice;
 	}
 
+	public void printReport() {
+		System.out.println("The Change Machine has:");
+		System.out.println("Nickels:\t" + nickels);
+		System.out.println("Dimes:\t" + dimes);
+		System.out.println("Quarters:\t" + quarters);
+		System.out.println("Dollars:\t" + dollars);
+		System.out.println("Total Cash:\t" + cashBalance);
+		System.out.println("Total rCard:\t" + rCardBalance);
+		System.out.println("Total Bank:\t" + (cashBalance + rCardBalance));
+	}
+
 	/**
 	 * Returns the amount provided to the user.
 	 * 

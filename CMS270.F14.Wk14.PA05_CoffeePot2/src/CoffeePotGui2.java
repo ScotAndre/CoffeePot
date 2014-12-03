@@ -267,10 +267,88 @@ public class CoffeePotGui2 extends JFrame {
 		JButton btnCoinReturn = new JButton("Coin Return");
 		oPanelLeft.add(btnOrder);
 		oPanelRight.add(btnCoinReturn);
+		btnOrder.setEnabled(false);
+		// coin return acts as a cancel button, so it should always be enabled
+		btnCoinReturn.setEnabled(true);
 
 		// ***********************************************
 		// ActionListeners
 		// ***********************************************
+
+		// Order Button ActionListener
+		btnOrder.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (cm.getPaymentType()) {
+					// rCard Payment
+					order.printOrder();
+					double charge = cm.getTotalPurchase() / 100.0;
+					textLeft.setText("");
+					textLeft.append("Your rCard\nwill be charged\n$ "
+							+ df.format(charge));
+					cm.checkOut();
+					order.dispense();
+
+					// reset machine
+					btnOrder.setEnabled(false);
+					btnAddCream.setEnabled(false);
+					btnSubtractCream.setEnabled(false);
+					btnAddLemon.setEnabled(false);
+					btnSubtractLemon.setEnabled(false);
+					btnAddSugar.setEnabled(false);
+					btnSubtractSugar.setEnabled(false);
+					btnNickel.setEnabled(false);
+					btnDime.setEnabled(false);
+					btnQuarter.setEnabled(false);
+					btnDollar.setEnabled(false);
+					textRight.setText("");
+					textRight.append("\tTotal:\n");
+					creamWanted = 0;
+					lemonWanted = 0;
+					sugarWanted = 0;
+					for (int i = 0; i < bevButtons.length; i++) {
+						bevButtons[i].setEnabled(true);
+					}
+					cm.printReport();
+				} else {
+					// Cash Payment
+					if (cm.hasPaidEnough()) {
+						double change = (cm.getInsertedAmount() - cm
+								.getTotalPurchase()) / 100.0;
+						cm.checkOut();
+						order.dispense();
+						textLeft.setText("");
+						textLeft.append("Change: $" + df.format(change));
+
+						// reset machine
+						btnOrder.setEnabled(false);
+						btnAddCream.setEnabled(false);
+						btnSubtractCream.setEnabled(false);
+						btnAddLemon.setEnabled(false);
+						btnSubtractLemon.setEnabled(false);
+						btnAddSugar.setEnabled(false);
+						btnSubtractSugar.setEnabled(false);
+						btnNickel.setEnabled(false);
+						btnDime.setEnabled(false);
+						btnQuarter.setEnabled(false);
+						btnDollar.setEnabled(false);
+						textRight.setText("");
+						textRight.append("\tTotal:\n");
+						creamWanted = 0;
+						lemonWanted = 0;
+						sugarWanted = 0;
+						for (int i = 0; i < bevButtons.length; i++) {
+							bevButtons[i].setEnabled(true);
+						}
+						cm.printReport();
+					} else {
+						System.out.println("Cheap skate!  Pay your bill!!!");
+					}
+				}
+			}
+		});// end order button ActionListener
+
 		// Coin Return ActionListener
 		btnCoinReturn.addActionListener(new ActionListener() {
 
@@ -313,6 +391,9 @@ public class CoffeePotGui2 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cm.setPaymentToRCard();
+				btnCoinReturn.setEnabled(true);
+				btnCash.setEnabled(true);
+				btnOrder.setEnabled(true);
 				btnNickel.setEnabled(false);
 				btnDime.setEnabled(false);
 				btnQuarter.setEnabled(false);
@@ -328,6 +409,7 @@ public class CoffeePotGui2 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cm.setPaymentToCash();
+				// enable the coin buttons
 				btnNickel.setEnabled(true);
 				btnDime.setEnabled(true);
 				btnQuarter.setEnabled(true);
@@ -349,6 +431,9 @@ public class CoffeePotGui2 extends JFrame {
 				textLeft.append("Nickel Inserted\n");
 				double inserted = cm.getInsertedAmount() / 100.0;
 				textLeft.append("Total Inserted:\n $" + df.format(inserted));
+				if (cm.hasPaidEnough()) {
+					btnOrder.setEnabled(true);
+				}
 			}
 		});// end Nickel ActionListener
 
@@ -361,7 +446,9 @@ public class CoffeePotGui2 extends JFrame {
 				textLeft.append("Dime Inserted\n");
 				double inserted = cm.getInsertedAmount() / 100.0;
 				textLeft.append("Total Inserted:\n $" + df.format(inserted));
-
+				if (cm.hasPaidEnough()) {
+					btnOrder.setEnabled(true);
+				}
 			}
 		});// end Dime ActionListener
 
@@ -374,7 +461,9 @@ public class CoffeePotGui2 extends JFrame {
 				textLeft.append("Quarter Inserted\n");
 				double inserted = cm.getInsertedAmount() / 100.0;
 				textLeft.append("Total Inserted:\n $" + df.format(inserted));
-
+				if (cm.hasPaidEnough()) {
+					btnOrder.setEnabled(true);
+				}
 			}
 		});// end Quarter ActionListener
 
@@ -387,7 +476,9 @@ public class CoffeePotGui2 extends JFrame {
 				textLeft.append("Dollar Inserted\n");
 				double inserted = cm.getInsertedAmount() / 100.0;
 				textLeft.append("Total Inserted:\n $" + df.format(inserted));
-
+				if (cm.hasPaidEnough()) {
+					btnOrder.setEnabled(true);
+				}
 			}
 		});// end Dollar ActionListener
 

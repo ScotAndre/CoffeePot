@@ -34,4 +34,12 @@ public class Order {
 		}
 	}
 
+	public void printOrder() {
+		BeverageComponent beverage;
+		for (int i = 0; i < order.size(); i++) {
+			beverage = order.get(i);
+			System.out.println(beverage.getName());
+		}
+	}
+
 }

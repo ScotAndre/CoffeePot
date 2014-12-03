@@ -45,6 +45,7 @@ public class Decaf extends Beverage {
 	@Override
 	public void dispense() {
 		inventory--;
+		System.out.println("Decaf dispensed.");
 	}
 
 	@Override

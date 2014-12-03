@@ -27,6 +27,7 @@ public class Lemon extends Condiment {
 		return description;
 	}
 
+	@Override
 	public int getInventory() {
 		return inventory;
 	}
@@ -34,5 +35,6 @@ public class Lemon extends Condiment {
 	@Override
 	public void dispense() {
 		inventory--;
+		System.out.println("Lemon dispensed.");
 	}
 }

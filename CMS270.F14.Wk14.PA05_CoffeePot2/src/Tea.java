@@ -45,6 +45,7 @@ public class Tea extends Beverage {
 	@Override
 	public void dispense() {
 		inventory--;
+		System.out.println("Tea dispensed.");
 	}
 
 	@Override
