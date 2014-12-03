@@ -289,7 +289,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertNickel();
 				System.out.println("Your total inserted is: "
 						+ cm.getInsertedAmount());
-				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
+				if (cm.hasPaidEnough()) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
@@ -303,7 +303,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertDime();
 				System.out.println("Your total inserted is: "
 						+ cm.getInsertedAmount());
-				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
+				if (cm.hasPaidEnough()) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
@@ -317,7 +317,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertQuarter();
 				System.out.println("Your total inserted is: "
 						+ cm.getInsertedAmount());
-				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
+				if (cm.hasPaidEnough()) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
@@ -331,7 +331,7 @@ public class CoffeePotGui extends JFrame {
 				cm.insertDollar();
 				System.out.println("Your total inserted is: "
 						+ cm.getInsertedAmount());
-				if (cm.hasPaidEnough(cm.getTotalPurchase())) {
+				if (cm.hasPaidEnough()) {
 					btnOrderButton.setEnabled(true);
 				}
 			}
@@ -366,29 +366,13 @@ public class CoffeePotGui extends JFrame {
 					sugarWanted = 0;
 				} else {
 					// cash payment
-					if (cm.getInsertedAmount() >= cm.getTotalPurchase()) {
-						order.dispense();
-						txtAreaLeft.append("Your change\nof $ "
-								+ df.format(((cm.getInsertedAmount() - cm
-										.getTotalPurchase()) / 100.0))
-								+ " has been\nrefunded.");
-
-						cm.checkOut();
-						btnOrderButton.setEnabled(false);
-						btnPlusCream.setEnabled(false);
-						btnMinCream.setEnabled(false);
-						btnPlusSugar.setEnabled(false);
-						btnMinSugar.setEnabled(false);
-						btnPlusLemon.setEnabled(false);
-						btnMinLemon.setEnabled(false);
-						creamWanted = 0;
-						lemonWanted = 0;
-						sugarWanted = 0;
+					if (cm.hasPaidEnough()) {
+						System.out.println("Dispense...");
 					} else {
-						txtAreaLeft.append("Please insert\n another "
-								+ (cm.getTotalPurchase() - cm
-										.getInsertedAmount()) + " cents.");
+						// has not paid enough
+						System.out.println("Cheap Skate!");
 					}
+
 				}
 			}
 		});

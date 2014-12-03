@@ -1,14 +1,6 @@
 import java.util.ArrayList;
 
 public class Order {
-	// private BeverageComponent coffee = new Coffee();
-	// private BeverageComponent decaf = new Decaf();
-	// private BeverageComponent tea = new Tea();
-	// private BeverageComponent soup = new Soup();
-	//
-	// private BeverageComponent cream = new Cream();
-	// private BeverageComponent lemon = new Lemon();
-	// private BeverageComponent sugar = new Sugar();
 
 	private ArrayList<BeverageComponent> order = new ArrayList<BeverageComponent>();
 
@@ -23,7 +15,7 @@ public class Order {
 		order.remove(beverage);
 	}
 
-	public ArrayList getOrder() {
+	public ArrayList<BeverageComponent> getOrder() {
 		return order;
 	}
 

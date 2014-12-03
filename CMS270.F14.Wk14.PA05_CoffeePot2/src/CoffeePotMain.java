@@ -25,7 +25,7 @@ public class CoffeePotMain {
 			@Override
 			public void run() {
 				try {
-					CoffeePotGui frame = new CoffeePotGui();
+					CoffeePotGui2 frame = new CoffeePotGui2();
 					frame.setTitle("Coffee Machine");
 					frame.setVisible(true);
 				} catch (Exception e) {

@@ -91,11 +91,14 @@ public class ChangeMachine {
 		if (payWithRCard) {
 			rCardBalance += totalPurchase;
 			totalPurchase = 0;
+			payWithRCard = false;
 		} else {
 			moneyInserted -= totalPurchase;
 			makeChange(moneyInserted);
 			cashBalance += totalPurchase;
+			payWithRCard = false;
 			totalPurchase = 0;
+			moneyInserted = 0;
 		}
 	}
 
@@ -105,6 +108,7 @@ public class ChangeMachine {
 	public void coinReturn() {
 		makeChange(moneyInserted);
 		totalPurchase = 0;
+		moneyInserted = 0;
 	}
 
 	/**
@@ -126,8 +130,10 @@ public class ChangeMachine {
 	 *         is greater than or equal to the total amount due,
 	 *         <code>false</code> otherwise.
 	 */
-	public boolean hasPaidEnough(int totalBill) {
-		if (payWithRCard || moneyInserted >= totalBill) {
+	public boolean hasPaidEnough() {
+		if (payWithRCard) {
+			return true;
+		} else if (moneyInserted >= totalPurchase) {
 			return true;
 		} else {
 			return false;

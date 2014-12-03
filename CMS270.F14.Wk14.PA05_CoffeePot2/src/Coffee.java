@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /*
  *  Coffee.java
  *  
@@ -13,6 +15,7 @@
  *
  */
 public class Coffee extends Beverage {
+	DecimalFormat df = new DecimalFormat("##0.00");
 	private String name = "Coffee";
 	private String description = "Black Coffee";
 	private int inventory = 100;
@@ -65,6 +68,6 @@ public class Coffee extends Beverage {
 
 	@Override
 	public String toString() {
-		return name + "\t" + PRICE;
+		return name + "\t" + df.format(PRICE / 100.0);
 	}
 }
