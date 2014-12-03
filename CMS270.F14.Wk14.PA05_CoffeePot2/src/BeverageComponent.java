@@ -13,42 +13,79 @@
  *
  */
 public abstract class BeverageComponent {
+	/**
+	 * Add a beverage component object to the menu.
+	 * 
+	 * @param menuComponent
+	 */
 	public void add(BeverageComponent menuComponent) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Remove a beverage component object to the menu.
+	 * 
+	 * @param menuComponent
+	 */
 	public void remove(BeverageComponent menuComponent) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * 
+	 * @param index
+	 * @return
+	 */
 	public BeverageComponent getChild(int index) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * @return
+	 */
 	public String getName() {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * @return
+	 */
 	public String getDescription() {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * @return
+	 */
 	public int getPrice() {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * @return
+	 */
 	public int getInventory() {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * @param menuComponent
+	 * @return
+	 */
 	public boolean isAcceptableCondiment(BeverageComponent menuComponent) {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * 
+	 */
 	public void dispense() {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * 
+	 */
 	public void print() {
 		throw new UnsupportedOperationException();
 	}
