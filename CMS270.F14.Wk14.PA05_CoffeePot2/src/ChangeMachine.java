@@ -253,6 +253,7 @@ public class ChangeMachine {
 	public void insertNickel() {
 		moneyInserted += 5;
 		nickels++;
+		System.out.println("Nickel inserted.");
 	}
 
 	public void insertDime() {
