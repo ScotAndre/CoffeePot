@@ -17,6 +17,7 @@ public class CoffeePotGui extends JFrame {
 	private int creamWanted = 0;
 	private int lemonWanted = 0;
 	private int sugarWanted = 0;
+	private int marshmallowWanted = 0;
 
 	public CoffeePotGui() {
 		super();
@@ -29,10 +30,12 @@ public class CoffeePotGui extends JFrame {
 
 		BeverageComponent coffee = new Coffee();
 		BeverageComponent decaf = new Decaf();
+		BeverageComponent hotCoco = new HotChocolate();
 		BeverageComponent soup = new Soup();
 		BeverageComponent tea = new Tea();
 		BeverageComponent cream = new Cream();
 		BeverageComponent lemon = new Lemon();
+		BeverageComponent marshmallow = new Marshmallow();
 		BeverageComponent sugar = new Sugar();
 
 		// Buttons
@@ -43,6 +46,8 @@ public class CoffeePotGui extends JFrame {
 		JButton btnSubtractLemon = new JButton("-");
 		JButton btnAddSugar = new JButton("+");
 		JButton btnSubtractSugar = new JButton("-");
+		JButton btnAddMarsh = new JButton("+");
+		JButton btnSubtractMarsh = new JButton("-");
 
 		JPanel contentPane;
 		setBounds(100, 100, 400, 600);
@@ -147,6 +152,25 @@ public class CoffeePotGui extends JFrame {
 						textLeft.setText("");
 					}// end decaf conditional
 
+					if (button.equalsIgnoreCase("Hot Coco")) {
+						// turn off the beverage buttons
+						for (int j = 0; j < bevButtons.length; j++) {
+							bevButtons[j].setEnabled(false);
+						}
+
+						// active appropriate condiment buttons
+						if (marshmallow.getInventory() > marshmallowWanted) {
+							btnAddMarsh.setEnabled(true);
+						}
+						order.add(hotCoco);
+						cm.addToPurchase(hotCoco.getPrice());
+						textRight.setText("");
+						double total = cm.getTotalPurchase() / 100.0;
+						textRight.append("\tTotal: \n$ " + df.format(total)
+								+ "\n");
+						textLeft.setText("");
+					}// end Hot Coco conditional
+
 					if (button.equalsIgnoreCase("Tea")) {
 						// turn off the beverage buttons
 						for (int j = 0; j < bevButtons.length; j++) {
@@ -199,7 +223,7 @@ public class CoffeePotGui extends JFrame {
 		condimentPanel.setBackground(Color.WHITE);
 		condimentPanel.setLayout(new GridLayout(2, 1));
 		topCondPanel.setLayout(new GridLayout(1, 3));
-		bottomCondPanel.setLayout(new GridLayout(1, 6));
+		bottomCondPanel.setLayout(new GridLayout(1, 8));
 
 		// condiment labels
 		JLabel[] condimentLabels = new JLabel[pl.getAllCondiments().size()];
@@ -217,12 +241,16 @@ public class CoffeePotGui extends JFrame {
 		bottomCondPanel.add(btnSubtractCream);
 		bottomCondPanel.add(btnAddLemon);
 		bottomCondPanel.add(btnSubtractLemon);
+		bottomCondPanel.add(btnAddMarsh);
+		bottomCondPanel.add(btnSubtractMarsh);
 		bottomCondPanel.add(btnAddSugar);
 		bottomCondPanel.add(btnSubtractSugar);
 		btnAddCream.setEnabled(false);
 		btnSubtractCream.setEnabled(false);
 		btnAddLemon.setEnabled(false);
 		btnSubtractLemon.setEnabled(false);
+		btnAddMarsh.setEnabled(false);
+		btnSubtractMarsh.setEnabled(false);
 		btnAddSugar.setEnabled(false);
 		btnSubtractSugar.setEnabled(false);
 
@@ -571,6 +599,49 @@ public class CoffeePotGui extends JFrame {
 				}
 			}
 		});// end lemon subtract ActionListener
+
+		// Marshmallow Add Button
+		btnAddMarsh.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (marshmallowWanted + 1 <= marshmallow.getInventory()) {
+					marshmallowWanted += 3;
+					order.add(marshmallow);
+					btnSubtractMarsh.setEnabled(true);
+					textLeft.setText("");
+					textLeft.append("Added: Marshmallows\n");
+					textLeft.append("" + marshmallowWanted + "\n");
+				}
+				if (marshmallowWanted == marshmallow.getInventory()) {
+					btnSubtractMarsh.setEnabled(false);
+				}
+				if (marshmallowWanted > 0) {
+					btnAddMarsh.setEnabled(true);
+				}
+			}
+		});// end Marshmallow add button ActionListener
+
+		// Marshmallow Subtract Button
+		btnSubtractMarsh.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (marshmallowWanted > 0) {
+					marshmallowWanted -= 3;
+					order.remove(marshmallow);
+					textLeft.setText("");
+					textLeft.append("Removed: Marshmallows\n");
+					textLeft.append("" + marshmallowWanted + "\n");
+				}
+				if (marshmallowWanted == 0) {
+					btnSubtractMarsh.setEnabled(false);
+				}
+				if (marshmallowWanted < marshmallow.getInventory()) {
+					btnAddMarsh.setEnabled(true);
+				}
+			}
+		});// end marshmallow subtract ActionListener
 
 		// Sugar Add Button
 		btnAddSugar.addActionListener(new ActionListener() {

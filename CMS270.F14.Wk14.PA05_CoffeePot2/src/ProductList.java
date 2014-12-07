@@ -20,11 +20,13 @@ public class ProductList {
 	private Condiment cream = new Cream();
 	private Condiment sugar = new Sugar();
 	private Condiment lemon = new Lemon();
+	private Condiment marshmallow = new Marshmallow();
 
 	// All Products
 	private ArrayList<Beverage> allBeverages = new ArrayList<Beverage>();
 	private Beverage coffee = new Coffee();
 	private Beverage decaf = new Decaf();
+	private Beverage hotCoco = new HotChocolate();
 	private Beverage tea = new Tea();
 	private Beverage soup = new Soup();
 
@@ -36,22 +38,30 @@ public class ProductList {
 		allBeverages();
 
 		BeverageComponent coffeeMenu = new Menu("COFFEE MENU", "Coffee");
+		BeverageComponent hotCocoMenu = new Menu("HOT COCO", "Hot Chocolate");
 		BeverageComponent teaMenu = new Menu("TEA MENU", "Tea");
 		BeverageComponent soupMenu = new Menu("SOUP MENU", "Soup");
 
-		BeverageComponent teaCondiments = new Menu("TEA Condiments",
+		BeverageComponent teaCondiments = new Menu("Tea Condiments",
 				"Tea Condiments");
+
+		BeverageComponent hotCocoCondiments = new Menu("Hot Coco Condiments",
+				"Hot Coco Condiments");
 
 		BeverageComponent allMenus = new Menu("ALL MENUS",
 				"All menus combined.");
 
 		allMenus.add(coffeeMenu);
+		allMenus.add(hotCocoMenu);
 		allMenus.add(teaMenu);
 		allMenus.add(soupMenu);
 
 		coffeeMenu.add(coffee);
 		coffeeMenu.add(decaf);
 		coffeeMenu.add(coffeeCondiments);
+
+		hotCocoMenu.add(hotCoco);
+		hotCocoMenu.add(hotCocoCondiments);
 
 		teaMenu.add(tea);
 		teaMenu.add(teaCondiments);
@@ -60,6 +70,12 @@ public class ProductList {
 		for (int i = 0; i < allCondiments.size(); i++) {
 			if (coffee.isAcceptableCondiment(allCondiments.get(i).getName())) {
 				coffeeCondiments.add(allCondiments.get(i));
+			}
+		}
+
+		for (int i = 0; i < allCondiments.size(); i++) {
+			if (hotCoco.isAcceptableCondiment(allCondiments.get(i).getName())) {
+				hotCocoCondiments.add(allCondiments.get(i));
 			}
 		}
 
@@ -80,12 +96,14 @@ public class ProductList {
 	private void allCondiments() {
 		allCondiments.add(cream);
 		allCondiments.add(lemon);
+		allCondiments.add(marshmallow);
 		allCondiments.add(sugar);
 	}
 
 	private void allBeverages() {
 		allBeverages.add(coffee);
 		allBeverages.add(decaf);
+		allBeverages.add(hotCoco);
 		allBeverages.add(tea);
 		allBeverages.add(soup);
 	}
