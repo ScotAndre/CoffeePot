@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,7 +86,8 @@ public class CoffeePotGui extends JFrame {
 		// beverage selection panel
 		JPanel bevPanel = new JPanel();
 		contentPane.add(bevPanel);
-		bevPanel.setLayout(new GridLayout(1, pl.getAllBeverages().size()));
+		// bevPanel.setLayout(new GridLayout(1, pl.getAllBeverages().size()));
+		bevPanel.setLayout(new FlowLayout());
 
 		// build an array of buttons, one for each beverage
 		JButton[] bevButtons = new JButton[pl.getAllBeverages().size()];
@@ -92,6 +95,7 @@ public class CoffeePotGui extends JFrame {
 			beverage = (Beverage) pl.getAllBeverages().get(i);
 			bevButtons[i] = new JButton(
 					((Beverage) pl.getAllBeverages().get(i)).getName());
+			bevButtons[i].setPreferredSize(new Dimension(100, 50));
 			bevPanel.add(bevButtons[i]);
 			// Build the menu
 			textCenter.append("\t" + beverage.toString() + "\n");
@@ -355,6 +359,8 @@ public class CoffeePotGui extends JFrame {
 						btnSubtractCream.setEnabled(false);
 						btnAddLemon.setEnabled(false);
 						btnSubtractLemon.setEnabled(false);
+						btnAddMarsh.setEnabled(false);
+						btnSubtractMarsh.setEnabled(false);
 						btnAddSugar.setEnabled(false);
 						btnSubtractSugar.setEnabled(false);
 						btnNickel.setEnabled(false);
@@ -401,6 +407,8 @@ public class CoffeePotGui extends JFrame {
 				btnSubtractCream.setEnabled(false);
 				btnAddLemon.setEnabled(false);
 				btnSubtractLemon.setEnabled(false);
+				btnAddMarsh.setEnabled(false);
+				btnSubtractMarsh.setEnabled(false);
 				btnAddSugar.setEnabled(false);
 				btnSubtractSugar.setEnabled(false);
 
