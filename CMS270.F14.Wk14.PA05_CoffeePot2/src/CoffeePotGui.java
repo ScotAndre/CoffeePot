@@ -22,7 +22,7 @@ public class CoffeePotGui extends JFrame {
 	private int marshmallowWanted = 0;
 
 	public CoffeePotGui() {
-		super();
+		super("Coffee Machine");
 		DecimalFormat df = new DecimalFormat("##0.00");
 		Order order = new Order();
 		ProductList pl = new ProductList();
