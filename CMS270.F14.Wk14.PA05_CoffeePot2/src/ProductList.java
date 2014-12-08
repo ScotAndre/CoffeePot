@@ -93,6 +93,9 @@ public class ProductList {
 		thePot.printMenu();
 	}
 
+	/*
+	 * builds an ArrayList of all of the condiments available in this machine
+	 */
 	private void allCondiments() {
 		allCondiments.add(cream);
 		allCondiments.add(lemon);
@@ -100,6 +103,9 @@ public class ProductList {
 		allCondiments.add(sugar);
 	}
 
+	/*
+	 * builds an ArrayList of all of the beverages available in this machine
+	 */
 	private void allBeverages() {
 		allBeverages.add(coffee);
 		allBeverages.add(decaf);
@@ -108,15 +114,17 @@ public class ProductList {
 		allBeverages.add(soup);
 	}
 
-	public ArrayList getAllCondiments() {
+	/**
+	 * @return ArrayList of all condiments
+	 */
+	public ArrayList<Condiment> getAllCondiments() {
 		return allCondiments;
 	}
 
-	public ArrayList getAllBeverages() {
+	/**
+	 * @return ArrayList of all beverages
+	 */
+	public ArrayList<Beverage> getAllBeverages() {
 		return allBeverages;
-	}
-
-	public BeverageComponent getCoffeeCondiments() {
-		return coffeeCondiments;
 	}
 }

@@ -17,6 +17,7 @@ public abstract class BeverageComponent {
 	 * Add a beverage component object to the menu.
 	 * 
 	 * @param menuComponent
+	 *            the component or leaf that you want to add
 	 */
 	public void add(BeverageComponent menuComponent) {
 		throw new UnsupportedOperationException();
@@ -26,6 +27,7 @@ public abstract class BeverageComponent {
 	 * Remove a beverage component object to the menu.
 	 * 
 	 * @param menuComponent
+	 *            the component or leaf that you want to remove
 	 */
 	public void remove(BeverageComponent menuComponent) {
 		throw new UnsupportedOperationException();
@@ -34,35 +36,36 @@ public abstract class BeverageComponent {
 	/**
 	 * 
 	 * @param index
-	 * @return
+	 *            the index of the child to return
+	 * @return BeverageComponent the child specified by the index given
 	 */
 	public BeverageComponent getChild(int index) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @return
+	 * @return String the name of the beverage
 	 */
 	public String getName() {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @return
+	 * @return String the description of the beverage
 	 */
 	public String getDescription() {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @return
+	 * @return int the price of the beverage
 	 */
 	public int getPrice() {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * @return
+	 * @return int the current inventory of the beverage
 	 */
 	public int getInventory() {
 		throw new UnsupportedOperationException();
@@ -70,22 +73,20 @@ public abstract class BeverageComponent {
 
 	/**
 	 * @param menuComponent
-	 * @return
+	 * @return boolean returns <code>true</code> if the condiment is acceptable
+	 *         to the beverage, otherwise it returns <code>false</code>
 	 */
 	public boolean isAcceptableCondiment(BeverageComponent menuComponent) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * 
+	 * dispenses the beverage and adjusts the inventory
 	 */
 	public void dispense() {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 */
 	public void print() {
 		throw new UnsupportedOperationException();
 	}

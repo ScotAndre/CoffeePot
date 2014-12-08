@@ -7,24 +7,45 @@ public class Order {
 	public Order() {
 	}
 
+	/**
+	 * Adds a beverage component to the order
+	 * 
+	 * @param beverage
+	 *            the beverage that will be added to the order
+	 */
 	public void add(BeverageComponent beverage) {
 		order.add(beverage);
 	}
 
+	/**
+	 * Removes a beverage component to the order
+	 * 
+	 * @param beverage
+	 *            the beverage that will be removed from the order
+	 */
 	public void remove(BeverageComponent beverage) {
 		order.remove(beverage);
 	}
 
+	/**
+	 * @return ArrayList the list of beverage components currently ordered
+	 */
 	public ArrayList<BeverageComponent> getOrder() {
 		return order;
 	}
 
+	/**
+	 * Cancels an order
+	 */
 	public void cancelOrder() {
 		for (int i = order.size() - 1; i >= 0; i--) {
 			order.remove(order.get(i));
 		}
 	}
 
+	/**
+	 * finalizes and dispenses an order
+	 */
 	public void dispense() {
 		BeverageComponent beverage;
 		for (int i = order.size() - 1; i >= 0; i--) {
@@ -34,6 +55,9 @@ public class Order {
 		}
 	}
 
+	/**
+	 * Outputs the current order to the console
+	 */
 	public void printOrder() {
 		BeverageComponent beverage;
 		for (int i = 0; i < order.size(); i++) {
