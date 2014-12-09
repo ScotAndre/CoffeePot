@@ -16,6 +16,7 @@ public class Marshmallow extends Condiment {
 	private String name = "Marshmallow";
 	private String description = "Miniture Marshmallows";
 	private int inventory = 100;
+	private int wanted = 0;
 
 	@Override
 	public String getName() {
@@ -28,13 +29,34 @@ public class Marshmallow extends Condiment {
 	}
 
 	@Override
+	public int getWanted() {
+		return wanted;
+	}
+
+	@Override
+	public void addWanted() {
+		wanted++;
+	}
+
+	@Override
+	public void removeWanted() {
+		wanted--;
+	}
+
+	@Override
+	public void resetWanted() {
+		wanted = 0;
+	}
+
+	@Override
 	public int getInventory() {
 		return inventory;
 	}
 
 	@Override
 	public void dispense() {
-		inventory = -3;
+		inventory -= 3;
+		wanted -= 3;
 		System.out.println("Marshmallows dispensed.");
 	}
 }

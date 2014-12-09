@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /*
@@ -16,6 +17,7 @@ import java.util.Scanner;
  */
 
 public class ChangeMachine {
+	private DecimalFormat df = new DecimalFormat("###0.00");
 	private int nickels = 0;
 	private int dimes = 0;
 	private int quarters = 0;
@@ -214,7 +216,7 @@ public class ChangeMachine {
 		int dimesReturned = 0;
 		int nickelsReturned = 0;
 
-		System.out.println("Your change is: " + change);
+		System.out.println("Your change is: $ " + df.format(change / 100.0));
 		// calculate number of dollars to return
 		// out of dollars - return quarters instead
 		dollarsReturned = change / 100;

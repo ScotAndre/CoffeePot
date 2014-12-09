@@ -17,6 +17,7 @@ public class Condiment extends BeverageComponent {
 	private String name;
 	private String description;
 	private int inventory;
+	private int wanted;
 
 	public Condiment() {
 
@@ -30,6 +31,22 @@ public class Condiment extends BeverageComponent {
 	@Override
 	public String getDescription() {
 		return description;
+	}
+
+	public int getWanted() {
+		return wanted;
+	}
+
+	public void addWanted() {
+		wanted++;
+	}
+
+	public void removeWanted() {
+		wanted--;
+	}
+
+	public void resetWanted() {
+		wanted = 0;
 	}
 
 	@Override

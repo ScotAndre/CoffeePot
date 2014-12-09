@@ -38,9 +38,7 @@ public class Order {
 	 * Cancels an order
 	 */
 	public void cancelOrder() {
-		for (int i = order.size() - 1; i >= 0; i--) {
-			order.remove(order.get(i));
-		}
+		order.clear();
 	}
 
 	/**
