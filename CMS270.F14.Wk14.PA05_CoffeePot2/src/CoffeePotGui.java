@@ -197,7 +197,7 @@ public class CoffeePotGui extends JFrame {
 					order.add(bev);
 					cm.addToPurchase(bev.getPrice());
 					msgAreaRight.append("   Total: $ "
-							+ df.format(cm.getTotalPurchase() / 100.0));
+							+ df.format(cm.getTotalPurchase() / 100.0) + "\n");
 
 					for (int j = 0; j < pl.getAllCondiments().size(); j++) {
 						Condiment cond = pl.getAllCondiments().get(j);
@@ -371,7 +371,8 @@ public class CoffeePotGui extends JFrame {
 
 						// reset right message area
 						msgAreaRight.setText("Total: $ "
-								+ cm.getTotalPurchase() + "\n");
+								+ df.format(cm.getTotalPurchase() / 100.0)
+								+ "\n");
 						msgAreaLeft.append("Your order has\nbeen dispensed");
 					} else {
 						double moneyShort = (cm.getTotalPurchase() - cm
@@ -393,13 +394,13 @@ public class CoffeePotGui extends JFrame {
 
 				// cancel order
 				order.cancelOrder();
+				cm.coinReturn();
 
 				if (cm.getInsertedAmount() > 0) {
 					// return coins (if any)
 					cm.coinReturn();
 				} else {
 					System.out.println("No money to be returned.");
-					msgAreaLeft.setText("");
 				}
 				// reset beverage buttons
 				for (int i = 0; i < pl.getAllBeverages().size(); i++) {
@@ -420,8 +421,10 @@ public class CoffeePotGui extends JFrame {
 				btnQuarter.setEnabled(false);
 				btnDollar.setEnabled(false);
 
-				// reset right message area
-				msgAreaRight.setText("Total: $ " + cm.getTotalPurchase());
+				// reset right message areas
+				msgAreaLeft.setText("");
+				msgAreaRight.setText("Total: $ "
+						+ df.format(cm.getTotalPurchase() / 100.0) + "\n");
 
 			}// end coin return if
 		}// end actionPerformed()
