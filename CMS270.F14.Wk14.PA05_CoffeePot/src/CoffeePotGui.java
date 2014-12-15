@@ -34,23 +34,7 @@ public class CoffeePotGui extends JFrame {
 	public CoffeePotGui() {
 		super("Coffee Machine");
 
-		int creamWanted = 0;
-		int lemonWanted = 0;
-		int sugarWanted = 0;
-		int marshmallowWanted = 0;
-
-		BeverageComponent coffee = new Coffee();
-		BeverageComponent decaf = new Decaf();
-		BeverageComponent hotCoco = new HotChocolate();
-		BeverageComponent soup = new Soup();
-		BeverageComponent tea = new Tea();
-		BeverageComponent cream = new Cream();
-		BeverageComponent lemon = new Lemon();
-		BeverageComponent marshmallow = new Marshmallow();
-		BeverageComponent sugar = new Sugar();
-
 		BeverageComponent beverage;
-		BeverageComponent condiment;
 
 		// Build the main window
 		JPanel mainFrame;
